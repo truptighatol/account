@@ -83,7 +83,7 @@ const Withdraw = () => {
                 </FormControl>
             </div>
             <div>
-                <h3>Available Denomination(Currency Notes)</h3>
+                <h3>Denomination(Currency Notes)</h3>
                 <ul>
                     {withdrawResult && withdrawResult.map(e =>
                         e.withdrawQty > 0 ? <li> {denominationSymbol}  {e.note} * {e.withdrawQty} = {e.note * e.withdrawQty}</li> : '')
