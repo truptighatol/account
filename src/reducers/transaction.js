@@ -7,16 +7,18 @@ export const TransactionReducer = (state = denominationCurrency[currencyName].cu
         case 'DEPOSIT':
             var index = state.findIndex((element) => element.note === action.payload.note);
             state[index].qty = parseInt(state[index].qty) + parseInt(action.payload.qty);
-            
-            // Sort by note value in desending order 
+
+            // Sort by note value in desending order
             state.sort((a, b) => (b.note > a.note) ? 1 : (a.note > b.note) ? -1 : 0)
             return state;
         case 'WITHDRAW':
             // [{note: 200, qty:2}, {note: 500, qty:1}];
             let withdrawNotes = action.payload;
             withdrawNotes.forEach(obj => {
-                var index = state.findIndex(element => element.note === obj.note);
-                state[index].qty = parseInt(state[index].qty) - parseInt(obj.withdrawQty);
+                if (obj && obj.withdrawQty) {
+                    var index = state.findIndex(element => element.note === obj.note);
+                    state[index].qty = parseInt(state[index].qty) - parseInt(obj.withdrawQty);
+                }
             });
 
             // Sort by note value in desending order

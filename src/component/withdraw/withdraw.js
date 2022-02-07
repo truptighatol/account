@@ -38,8 +38,7 @@ const Withdraw = () => {
     }
 
     const calcuateLeastCurrency = function (amount) {
-        let notes = noteList.filter(e => e.qty >= 1);
-        // let noteCounter = Array(notes.length).fill(0);
+        let notes = JSON.parse(JSON.stringify(noteList.filter(e => e.qty >= 1)));
 
         // Count notes
         for (let i = 0; i < notes.length; i++) {
@@ -75,7 +74,7 @@ const Withdraw = () => {
                             name="amount"
                             type="number"
                             required
-                            onChange={handleChange("amount")} 
+                            onChange={handleChange("amount")}
                             style={{marginRight:'10px'}}
                             />
                         <Button variant="contained" onClick={onWithdrawClick}>WITHDRAW</Button>
